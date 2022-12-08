@@ -7,6 +7,7 @@ router
   .post("/", documentsController.create);
 
 router.get("/search", documentsController.search);
+router.get("/user/:id", documentsController.getByUserId);
 
 router
   .get("/:id", documentsController.show)

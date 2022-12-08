@@ -46,6 +46,26 @@ module.exports = {
       return res.json(document);
     });
   },
+  getByUserId: function (req, res) {
+    const { id } = req.params;
+
+    DocumentsModel.find({ userId: id }, function (err, document) {
+      if (err) {
+        return res.status(500).json({
+          message: "Error when getting document.",
+          error: err,
+        });
+      }
+
+      if (!document) {
+        return res.status(404).json({
+          message: "No such document",
+        });
+      }
+
+      return res.json(document);
+    });
+  },
   create: function (req, res) {
     const { title, userId, language = 'en' } = req.body;
     const languageTag = {
