@@ -14,8 +14,8 @@ module.exports = {
     });
   },
   search: function (req, res) {
-    const { title, language = 'en' } = req.query;
-    DocumentsModel.find({ $text: { $search: title, $language: language } }, function (err, documents) {
+    const { title } = req.query;
+    DocumentsModel.find({ $text: { $search: title } }, function (err, documents) {
       if (err) {
         return res.status(500).json({
           message: "Error when getting documents.",
